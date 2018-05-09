@@ -35,6 +35,33 @@
 
 	</style>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script>
+		var hideArticle = true;
+
+
+
+		$( window ).scroll(function() {
+		  console.log(isScrolledIntoView(document.getElementById('TrigerForHiding')));
+		});
+
+
+
+		function isScrolledIntoView(el) {
+	    var rect = el.getBoundingClientRect();
+	    var elemTop = rect.top;
+	    var elemBottom = rect.bottom;
+
+	    // Only completely visible elements return true:
+	    // var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+	    // Partially visible elements return true:
+	    isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+
+	    return isVisible;
+		}
+	</script>
+
 </head>
 
 <body>
@@ -52,7 +79,7 @@
 			<p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
 		</section>
 
-		<section>
+		<section id = "TrigerForHiding">
 			<h1>Abschnitt Nummer 2</h1>
 			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 			</p>
