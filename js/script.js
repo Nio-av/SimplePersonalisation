@@ -1,37 +1,55 @@
-//Discribs wheather the long Version of the article is visible.
+//Script for persolalisation
+
+//Basic Configuration
+
+// Contains Reading Time for first section
+var timeToSwitch = 10;
+
+
+//Init for Variables
 
 //var contains the current classification of the user
-var fastreader = true;
+var fastReader = true;
 
 // var contains the current state of visibility of the triger headline
 var isTrigerVixsible = false;
 
+//var is changed after
+var timeUp = false;
 
+
+
+//Start Logic
 window.onload = function () {
-        setTimeout(timeIsUp, 10*1000)
+        setTimeout(timeIsUp, timeToSwitch*1000);
+
+        //Hide Informations
+        toggelVisibility('.carefulReader');
     };
 
 
 
 function timeIsUp() {
-    console.log('TimeIsUp');
+  timeUp = true;
+  console.log('TimeIsUp');
 }
 
 
+
 $( window ).scroll(function() {
-  isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
-  console.log(isTrigerVisible);
+    isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
+    console.log(isTrigerVisible);
 });
 
 
 
-
+//Change visibility of "el".
 function toggelVisibility(el){
   $(el).toggle();
 }
 
 
-
+//Check wheather "el" is currentlyy visible
 function isScrolledIntoView(el) {
   var rect = el.getBoundingClientRect();
   var elemTop = rect.top;
