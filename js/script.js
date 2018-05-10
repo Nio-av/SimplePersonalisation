@@ -80,3 +80,10 @@ function isScrolledIntoView(el) {
 
   return isVisible;
 }
+
+
+
+function viewMore(){
+  $(".carefulReader").insertAfter("#ViewMoreButton");
+  $(toggelVisibility(".carefulReader"));
+}
