@@ -16,13 +16,16 @@ var hasSeenPersonalisatedContent = false;
 var timeUp = false;
 
 
-
 //Start Logic
 window.onload = function () {
-        setTimeout(timeIsUp, timeToSwitch*1000);
+  //prepare Document
+  $('.carefulReader').addClass('personalisation');
+  $('.fastReader').addClass('personalisation');
 
-        //Hide Informations
-        toggelVisibility('.carefulReader');
+  setTimeout(timeIsUp, timeToSwitch*1000);
+
+  //Hide Informations
+  toggelVisibility('.carefulReader');
     };
 
 
