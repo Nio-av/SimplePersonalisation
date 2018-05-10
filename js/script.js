@@ -1,11 +1,29 @@
 //Discribs wheather the long Version of the article is visible.
-var articleVisivle = false;
 
+//var contains the current classification of the user
+var fastreader = true;
+
+// var contains the current state of visibility of the triger headline
+var isTrigerVixsible = false;
+
+
+window.onload = function () {
+        setTimeout(timeIsUp, 10*1000)
+    };
+
+
+
+function timeIsUp() {
+    console.log('TimeIsUp');
+}
 
 
 $( window ).scroll(function() {
-  console.log(isScrolledIntoView(document.getElementById('TrigerForHiding')));
+  isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
+  console.log(isTrigerVisible);
 });
+
+
 
 
 function toggelVisibility(el){
