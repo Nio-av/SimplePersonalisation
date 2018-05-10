@@ -33,10 +33,10 @@ function timeIsUp() {
 }
 
 
-
+//Function is triggerd every time the user scrolls
 $( window ).scroll(function() {
 
-  if(timeUp == false){
+  if(timeUp == false & hasSeenPersonalisatedContent == false){
     isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
     console.log(isTrigerVisible);
     if(isTrigerVisible == true){
