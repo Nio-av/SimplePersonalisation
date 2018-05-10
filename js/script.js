@@ -33,7 +33,7 @@ window.onload = function () {
 //change timeUp - var after timeToSwitch
 function timeIsUp() {
   timeUp = true;
-  console.log('TimeIsUp');
+  console.info('TimeIsUp');
 }
 
 
