@@ -85,5 +85,15 @@ function isScrolledIntoView(el) {
 
 function viewMore(){
   $(".carefulReader").insertAfter("#ViewMoreButton");
-  $(toggelVisibility(".carefulReader"));
+  toggelVisibility(".carefulReader");
+  if($("#ViewMoreButton").text() == "View More"){
+    $("#ViewMoreButton").text("View Less");
+  } else{
+    $("#ViewMoreButton").text("View More");
+  }
+
+
+
+
+
 }
