@@ -8,13 +8,11 @@ var timeToSwitch = 10;
 
 //Init for Variables
 
-//var contains the current classification of the user
-var fastReader = true;
+//var contain Information wheather the User has seen the personalisated content
+//--> Avoid change of Information and thereby iritation of the user
+var hasSeenPersonalisatedContent = false;
 
-// var contains the current state of visibility of the triger headline
-var isTrigerVixsible = false;
-
-//var is changed after
+//var is changed after timeToSwitch
 var timeUp = false;
 
 
@@ -37,8 +35,21 @@ function timeIsUp() {
 
 
 $( window ).scroll(function() {
+
+  if(timeUp == false){
     isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
     console.log(isTrigerVisible);
+    if(isTrigerVisible == true){
+      hasSeenPersonalisatedContent = true;
+      console.log('User has seen personalisated content');
+    }
+  }
+  if(timeUp == true & hasSeenPersonalisatedContent == false){
+    console.log('Show foll version');
+    toggelVisibility('.personalisation');
+    hasSeenPersonalisatedContent = true;
+  }
+
 });
 
 
