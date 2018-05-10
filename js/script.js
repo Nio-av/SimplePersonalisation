@@ -40,6 +40,7 @@ function timeIsUp() {
 //Function is triggerd every time the user scrolls
 $( window ).scroll(function() {
 
+  //user just wants some basic Informations
   if(timeUp == false & hasSeenPersonalisatedContent == false){
     isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
     console.log('Triger is visible: ' + isTrigerVisible);
@@ -48,8 +49,10 @@ $( window ).scroll(function() {
       console.log('User has seen personalisated content');
     }
   }
+
+  //user is a carefull Reader and wants textual Informatio
   if(timeUp == true & hasSeenPersonalisatedContent == false){
-    console.log('Show foll version');
+    console.log('Show textual version');
     toggelVisibility('.personalisation');
     hasSeenPersonalisatedContent = true;
   }
