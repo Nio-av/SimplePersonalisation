@@ -12,7 +12,7 @@ var timeToSwitch = 10;
 //--> Avoid change of Information and thereby iritation of the user
 var hasSeenPersonalisatedContent = false;
 
-//var is changed after timeToSwitch
+//var is changed after timeToSwitch - var
 var timeUp = false;
 
 
@@ -22,6 +22,7 @@ window.onload = function () {
   $('.carefulReader').addClass('personalisation');
   $('.fastReader').addClass('personalisation');
 
+  //start timer
   setTimeout(timeIsUp, timeToSwitch*1000);
 
   //Hide Informations
@@ -29,7 +30,7 @@ window.onload = function () {
     };
 
 
-
+//change timeUp - var after timeToSwitch
 function timeIsUp() {
   timeUp = true;
   console.log('TimeIsUp');
@@ -41,7 +42,7 @@ $( window ).scroll(function() {
 
   if(timeUp == false & hasSeenPersonalisatedContent == false){
     isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
-    console.log(isTrigerVisible);
+    console.log('Triger is visible: ' + isTrigerVisible);
     if(isTrigerVisible == true){
       hasSeenPersonalisatedContent = true;
       console.log('User has seen personalisated content');
