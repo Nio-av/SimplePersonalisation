@@ -26,14 +26,14 @@ window.onload = function () {
   setTimeout(timeIsUp, timeToSwitch*1000);
 
   //Hide Informations
-  toggelVisibility('.carefulReader');
+  setArticleMode('fastReader');
 
 
   //console.info("cookieExist " + cookieExist());
   if(cookieExist()==true){
     timeUp = true;
     hasSeenPersonalisatedContent = true;
-    setArticleModeBecauseOfCookie(getCookie("lastReadeMode"));
+    setArticleMode(getCookie("lastReadeMode"));
   };
 };
 
@@ -48,13 +48,16 @@ function cookieExist() {
 
 //User has alreade been on this page
 //rest last state of Page
-function setArticleModeBecauseOfCookie(mode){
+function setArticleMode(mode){
   if(mode=="carefulReader"){
-    toggelVisibility('.personalisation');
-    console.info("Article Mode via Cookie: carefullReader");
+    $('.carefulReader').show();
+    $('.fastReader').hide();
+    console.info("Article Mode: carefullReader");
   } else if (mode == "fastReader") {
+    $('.carefulReader').hide();
+    $('.fastReader').show();
     //nothing to do; see onLoad
-    console.info("Article Mode via Cookie: fastReader");
+    console.info("Article Mode: fastReader");
   }
 }
 
@@ -76,6 +79,7 @@ $( window ).scroll(function() {
   //user just wants some basic Informations
   if(timeUp == false & hasSeenPersonalisatedContent == false){
 
+    setArticleMode('fastReader');
 
     if(isTrigerVisible == true){
       hasSeenPersonalisatedContent = true;
@@ -87,29 +91,19 @@ $( window ).scroll(function() {
   //user is a careful Reader and wants textual Informatio
   if(timeUp == true & hasSeenPersonalisatedContent == false){
     console.log('Show textual version');
-    toggelVisibility('.personalisation');
-
-    // TODO: hasSeenPersonalisatedContent is not correct.
-    // hasSeenPersonalisatedContent needs to be set as true because of if not, the visibility is toggeld acidently.
-
-
-    //avoid flickr while scroling
-    hasSeenPersonalisatedContent = true;
+    //toggelVisibility('.personalisation');
+    setArticleMode('carefulReader');
 
 
     if(isTrigerVisible == true){
+      //avoid flickr while scroling
+      hasSeenPersonalisatedContent = true;
+
       setCookie("lastReadeMode", "carefulReader", 14);
     }
   }
 
 });
-
-
-
-//Change visibility of "el".
-function toggelVisibility(el){
-  $(el).toggle();
-}
 
 
 //Check wheather "el" is currentlyy visible
@@ -126,6 +120,13 @@ function isScrolledIntoView(el) {
   return isVisible;
 }
 
+
+//just for demo
+//TODO: Remove for live version
+//Change visibility of "el".
+function toggelVisibility(el){
+  $(el).toggle();
+}
 
 //viewMore-Button for fastReader
 function viewMore(){
