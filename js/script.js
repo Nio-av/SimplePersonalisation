@@ -70,12 +70,13 @@ function timeIsUp() {
 //Function is triggerd every time the user scrolls
 $( window ).scroll(function() {
 
-
+  var isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'));
+  console.log('Triger is visible: ' + isTrigerVisible);
 
   //user just wants some basic Informations
   if(timeUp == false & hasSeenPersonalisatedContent == false){
-    isTrigerVisible = isScrolledIntoView(document.getElementById('TrigerForHiding'))
-    console.log('Triger is visible: ' + isTrigerVisible);
+
+
     if(isTrigerVisible == true){
       hasSeenPersonalisatedContent = true;
       setCookie("lastReadeMode", "fastReader", 14);
@@ -88,9 +89,17 @@ $( window ).scroll(function() {
     console.log('Show textual version');
     toggelVisibility('.personalisation');
 
-    setCookie("lastReadeMode", "carefulReader", 14);
+    // TODO: hasSeenPersonalisatedContent is not correct.
+    // hasSeenPersonalisatedContent needs to be set as true because of if not, the visibility is toggeld acidently.
+
+
     //avoid flickr while scroling
     hasSeenPersonalisatedContent = true;
+
+
+    if(isTrigerVisible == true){
+      setCookie("lastReadeMode", "carefulReader", 14);
+    }
   }
 
 });
