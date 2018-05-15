@@ -15,11 +15,6 @@ var hasSeenPersonalisatedContent = false;
 //var is changed after timeToSwitch - var
 var timeUp = false;
 
-// var contains article mode.
-// no logic function; just for debuging documentation, cookies, statistic etc.
-// modes: [onLoad][fastReader][carefulReader]
-var articleMode = "onLoad";
-
 
 //Start Logic
 window.onload = function () {
@@ -33,18 +28,36 @@ window.onload = function () {
   //Hide Informations
   toggelVisibility('.carefulReader');
 
-  checkCookie();
+
+  //console.info("cookieExist " + cookieExist());
+  if(cookieExist()==true){
+    timeUp = true;
+    hasSeenPersonalisatedContent = true;
+    setArticleModeBecauseOfCookie(getCookie("lastReadeMode"));
+  };
 };
 
+function cookieExist() {
+    var cookie = getCookie("lastReadeMode");
+    if (cookie != "") {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-function checkCookie(){
-  cookie = getCookie("lastReadeMode");
-  if (cookie != ""){
-    alert(cookie);
-  } else {
-    alert ("noCookie");
+//User has alreade been on this page
+//rest last state of Page
+function setArticleModeBecauseOfCookie(mode){
+  if(mode=="carefulReader"){
+    toggelVisibility('.personalisation');
+    console.info("Article Mode via Cookie: carefullReader");
+  } else if (mode == "fastReader") {
+    //nothing to do; see onLoad
+    console.info("Article Mode via Cookie: fastReader");
   }
 }
+
 
 
 //change timeUp - var after timeToSwitch
@@ -57,7 +70,7 @@ function timeIsUp() {
 //Function is triggerd every time the user scrolls
 $( window ).scroll(function() {
 
-  setCookie("lastReadeMode", articleMode, 14);
+
 
   //user just wants some basic Informations
   if(timeUp == false & hasSeenPersonalisatedContent == false){
@@ -65,7 +78,7 @@ $( window ).scroll(function() {
     console.log('Triger is visible: ' + isTrigerVisible);
     if(isTrigerVisible == true){
       hasSeenPersonalisatedContent = true;
-      articleMode = "fastReader";
+      setCookie("lastReadeMode", "fastReader", 14);
       console.log('User has seen personalisated content');
     }
   }
@@ -74,7 +87,8 @@ $( window ).scroll(function() {
   if(timeUp == true & hasSeenPersonalisatedContent == false){
     console.log('Show textual version');
     toggelVisibility('.personalisation');
-    articleMode = "carefulReader";
+
+    setCookie("lastReadeMode", "carefulReader", 14);
     //avoid flickr while scroling
     hasSeenPersonalisatedContent = true;
   }
